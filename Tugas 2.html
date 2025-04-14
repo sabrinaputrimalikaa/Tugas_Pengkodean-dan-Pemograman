@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Laporan Keuangan Perusahaan</title>
+<style>
+body {
+font-family: 'Arial', sans-serif; margin: 20px;
+padding: 20px; background-color: #f9f9f9; color: #333;
+}
+h2, h3 {
+color: #2c3e50; text-align: center;
+}
+h2 {
+margin-bottom: 10px;
+}
+h3 {
+margin-top: 30px; margin-bottom: 15px; color: #34495e;
+}
+table {
+width: 100%;
+border-collapse: collapse; margin-bottom: 30px; background-color: #fff;
+box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+th, td {
+ 
+border: 1px solid #ddd; padding: 12px;
+text-align: right;
+}
+th {
+background-color: #f2f2f2; color: #333;
+font-weight: bold;
+}
+td {
+color: #555;
+}
+tr:nth-child(even) { background-color: #f9f9f9;
+}
+tr:hover {
+background-color: #f1f1f1;
+}
+.total-row {
+background-color: #e8f5e9; font-weight: bold;
+}
+.negative {
+color: #d32f2f;
+}
+.section {
+margin-bottom: 40px;
+}
+.section:last-child { margin-bottom: 0;
+}
+.company-name { font-size: 18px; font-weight: bold;
+ 
+color: #2c3e50; margin-bottom: 5px;
+}
+.report-title {
+font-size: 16px; color: #34495e; margin-bottom: 10px;
+}
+</style>
+</head>
+<body>
+<h2>Laporan Keuangan Tahun 2024</h2>
+
+
+<!-- Laporan Laba Rugi -->
+<div class="section">
+<div class="company-name">PT Maju Bersama Sejahtera</div>
+<div class="report-title">Laporan Laba Rugi</div>
+<table>
+<tr><th>Keterangan</th><th>Jumlah (Rp)</th></tr>
+<tr><td>Pendapatan</td><td>1,500,000,000</td></tr>
+<tr><td>Harga Pokok Penjualan</td><td class="negative">(800,000,000)</td></tr>
+<tr class="total-row"><th>Laba Kotor</th><th>700,000,000</th></tr>
+<tr><td>Total Beban</td><td class="negative">(350,000,000)</td></tr>
+<tr class="total-row"><th>Laba Bersih</th><th>350,000,000</th></tr>
+</table>
+</div>
+
+
+<!-- Laporan Perubahan Modal -->
+<div class="section">
+<div class="company-name">PT Maju Bersama Sejahtera</div>
+<div class="report-title">Laporan Perubahan Modal</div>
+<table>
+<tr><th>Keterangan</th><th>Jumlah (Rp)</th></tr>
+<tr><td>Modal Awal</td><td>1,000,000,000</td></tr>
+ 
+<tr><td>Laba Bersih</td><td>350,000,000</td></tr>
+<tr><td>Dividen</td><td class="negative">(100,000,000)</td></tr>
+<tr class="total-row"><th>Modal Akhir</th><th>1,250,000,000</th></tr>
+</table>
+</div>
+
+
+<!-- Laporan Posisi Keuangan -->
+<div class="section">
+<div class="company-name">PT Maju Bersama Sejahtera</div>
+<div class="report-title">Laporan Posisi Keuangan</div>
+<table>
+<tr><th>Aset</th><th>Jumlah (Rp)</th></tr>
+<tr><td>Kas</td><td>500,000,000</td></tr>
+<tr><td>Piutang</td><td>200,000,000</td></tr>
+<tr><td>Persediaan</td><td>300,000,000</td></tr>
+<tr class="total-row"><th>Total Aset</th><th>1,000,000,000</th></tr>
+<tr><th>Kewajiban</th><th>Jumlah (Rp)</th></tr>
+<tr><td>Hutang Dagang</td><td>250,000,000</td></tr>
+<tr><td>Hutang Pajak</td><td>100,000,000</td></tr>
+<tr class="total-row"><th>Total Kewajiban</th><th>350,000,000</th></tr>
+<tr><th>Ekuitas</th><th>Jumlah (Rp)</th></tr>
+<tr><td>Modal Akhir</td><td>1,250,000,000</td></tr>
+<tr class="total-row"><th>Total Kewajiban & Ekuitas</th><th>1,600,000,000</th></tr>
+</table>
+</div>
+
+
+<!-- Laporan Arus Kas -->
+<div class="section">
+<div class="company-name">PT Maju Bersama Sejahtera</div>
+<div class="report-title">Laporan Arus Kas</div>
+<table>
+<tr><th>Keterangan</th><th>Jumlah (Rp)</th></tr>
+<tr><td>Arus Kas dari Operasi</td><td>400,000,000</td></tr>
+<tr><td>Arus Kas dari Investasi</td><td class="negative">(150,000,000)</td></tr>
+ 
+<tr><td>Arus Kas dari Pendanaan</td><td class="negative">(50,000,000)</td></tr>
+<tr class="total-row"><th>Kenaikan Kas</th><th>200,000,000</th></tr>
+<tr><td>Saldo Kas Awal</td><td>300,000,000</td></tr>
+<tr class="total-row"><th>Saldo Kas Akhir</th><th>500,000,000</th></tr>
+</table>
+</div>
+</body>
+</html>
