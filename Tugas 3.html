@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aplikasi Persediaan & Penjualan</title>
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+<style> body {
+font-family: 'Quicksand', sans-serif;
+background: linear-gradient(to bottom right, #fdf6ee, #f9e4d4); min-height: 100vh;
+padding: 20px; color: #3b2f2f;
+}
+
+
+.container {
+max-width: 900px; margin: auto; background: #fffaf5; padding: 30px; border-radius: 20px;
+box-shadow: 0 10px 30px rgba(190, 140, 100, 0.2); border: 2px solid #f0e0d0;
+}
+
+
+h2 {
+ 
+text-align: center; color: #5a3921; font-weight: 700;
+margin-bottom: 30px;
+}
+
+
+.card {
+border: none; border-radius: 16px;
+margin-bottom: 25px; background-color: #f8f0e3;
+box-shadow: 0 4px 12px rgba(150, 100, 70, 0.1);
+}
+
+
+.card-header {
+background-color: #c89f81; color: white;
+font-weight: bold; font-size: 17px;
+border-top-left-radius: 16px; border-top-right-radius: 16px;
+}
+
+
+.form-control { border-radius: 10px;
+}
+
+
+.btn-custom {
+background-color: #a47148; color: white;
+ 
+border-radius: 10px; transition: 0.3s;
+}
+
+
+.btn-custom:hover { background-color: #7a4c2f; transform: scale(1.05);
+}
+
+
+.btn-action {
+background-color: #d6a36c; color: white;
+border: none; padding: 5px 12px; border-radius: 8px; font-size: 14px;
+}
+
+
+.btn-action:hover { background-color: #a47148;
+}
+
+
+.table thead {
+background-color: #5a3e2b; color: white;
+}
+
+
+.table {
+background-color: #fffaf0; border-radius: 10px;
+ 
+overflow: hidden;
+}
+
+
+</style>
+</head>
+<body>
+<div class="container">
+<h2>Aplikasi Persediaan & Penjualan</h2>
+
+
+<!-- Tambah Produk -->
+<div class="card">
+<div class="card-header">Tambah Produk</div>
+<div class="card-body">
+<div class="row g-2">
+<div class="col-md-4">
+<input type="text" id="productName" class="form-control" placeholder="Nama Produk">
+</div>
+<div class="col-md-3">
+<input type="number" id="productPrice" class="form-control" placeholder="Harga">
+</div>
+<div class="col-md-3">
+<input type="number" id="productStock" class="form-control" placeholder="Stok">
+</div>
+<div class="col-md-2">
+<button class="btn btn-custom w-100" onclick="addProduct()">Tambah</button>
+</div>
+</div>
+</div>
+</div>
+ 
+<!-- Daftar Produk -->
+<div class="card">
+<div class="card-header">Daftar Produk</div>
+<div class="card-body">
+<table class="table table-bordered text-center">
+<thead>
+<tr>
+<th>Nama</th>
+<th>Harga</th>
+<th>Stok</th>
+<th>Aksi</th>
+</tr>
+</thead>
+<tbody id="productTableBody"></tbody>
+</table>
+</div>
+</div>
+
+
+<!-- Riwayat Penjualan -->
+<div class="card">
+<div class="card-header">Riwayat Penjualan</div>
+<div class="card-body">
+<table class="table table-bordered text-center">
+<thead>
+<tr>
+<th>Produk</th>
+<th>Jumlah</th>
+<th>Total</th>
+</tr>
+</thead>
+ 
+<tbody id="salesHistoryBody"></tbody>
+</table>
+</div>
+</div>
+</div>
+
+
+<script>
+let products = [];
+let salesHistory = [];
+
+
+function addProduct() {
+let name = document.getElementById("productName").value;
+let price = parseFloat(document.getElementById("productPrice").value); let stock = parseInt(document.getElementById("productStock").value);
+
+if (!name || isNaN(price) || isNaN(stock)) { alert("Mohon isi semua kolom dengan benar."); return;
+}
+
+
+products.push({ name, price, stock }); renderProducts();
+clearInputFields();
+}
+
+
+function sellProduct(index) {
+let amount = prompt(Masukkan jumlah yang ingin dijual untuk produk "${products[index].name}":);
+amount = parseInt(amount);
+
+
+if (isNaN(amount) || amount <= 0 || amount > products[index].stock) {
+ 
+alert("Jumlah tidak valid atau stok tidak mencukupi."); return;
+}
+
+
+products[index].stock -= amount;
+const total = amount * products[index].price; salesHistory.push({
+name: products[index].name, amount,
+total
+});
+
+
+renderProducts(); renderSalesHistory();
+}
+
+
+function renderProducts() {
+const tableBody = document.getElementById("productTableBody"); tableBody.innerHTML = "";
+
+products.forEach((product, index) => { let row = document.createElement("tr"); row.innerHTML = `
+<td>${product.name}</td>
+<td>Rp ${product.price}</td>
+<td>${product.stock}</td>
+<td>
+<button class="btn btn-action btn-sm" onclick="sellProduct(${index})">Jual</button>
+</td>
+`;
+ 
+tableBody.appendChild(row);
+});
+}
+
+
+function renderSalesHistory() {
+const salesBody = document.getElementById("salesHistoryBody"); salesBody.innerHTML = "";
+
+salesHistory.forEach(sale => {
+let row = document.createElement("tr"); row.innerHTML = `
+<td>${sale.name}</td>
+<td>${sale.amount}</td>
+<td>Rp ${sale.total}</td>
+`; salesBody.appendChild(row);
+});
+}
+
+
+function clearInputFields() { document.getElementById("productName").value = ""; document.getElementById("productPrice").value = ""; document.getElementById("productStock").value = "";
+}
+</script>
+</body>
+</html>
